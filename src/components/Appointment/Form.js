@@ -4,8 +4,13 @@ import Button from 'components/Button';
 
 const Form = (props) => {
 
-  const [value, setValue] = useState(props.student || null);
+  const [value, setValue] = useState(props.student || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+
+  const reset = () => {
+    setInterviewer('');
+    setValue('');
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -17,6 +22,7 @@ const Form = (props) => {
             type="text"
             placeholder="Enter Student Name"
             value={value}
+            onChange={() => setValue(value)}
           />
         </form>
         <InterviewerList
@@ -26,7 +32,7 @@ const Form = (props) => {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button onClick={props.onCancel} danger >
+          <Button onClick={() => reset()} danger >
             Cancel
           </Button>
           <Button onClick={props.onSave} confirm >
