@@ -4,12 +4,13 @@ import Button from 'components/Button';
 
 const Form = (props) => {
 
-  const [value, setValue] = useState(props.student || '');
+  const [student, setStudent] = useState(props.student || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
   const reset = () => {
-    setInterviewer('');
-    setValue('');
+    setInterviewer(null);
+    setStudent('');
+    return props.onCancel;
   };
 
   return (
@@ -21,13 +22,15 @@ const Form = (props) => {
             name='name'
             type="text"
             placeholder="Enter Student Name"
-            value={value}
-            onChange={() => setValue(value)}
+            value={student}
+            onChange={e => setStudent(e.target.value)}
+            onSubmit={e => e.preventDefault()}
           />
         </form>
         <InterviewerList
           interviewers={props.interviewers}
           value={interviewer}
+          onChange={(e) => setInterviewer(e)}
         />
       </section>
       <section className="appointment__card-right">
