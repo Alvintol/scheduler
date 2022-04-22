@@ -7,8 +7,16 @@ export function getAppointmentsForDay(state, day) {
   }
 
   filteredDays[0].appointments
-  .forEach(num =>
-    appointmentList.push(state.appointments[num])
-  )
+    .forEach(num =>
+      appointmentList.push(state.appointments[num])
+    )
   return appointmentList;
-}
+};
+
+export function getInterview(state, interview) {
+  return interview ? 
+  {...interview,
+      interviewer: state.interviewers[interview.interviewer]
+    }
+  : null;
+};
