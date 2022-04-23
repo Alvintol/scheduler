@@ -1,6 +1,7 @@
 export function getAppointmentsForDay(state, day) {
   const appointmentList = [];
 
+  // picks out the weekday object that matches the target day 
   const filteredDays = state.days.filter(weekday => weekday.name === day);
   
   if (filteredDays.length === 0) {
@@ -13,10 +14,10 @@ export function getAppointmentsForDay(state, day) {
     )
   return appointmentList;
 };
-export function getInterviewersForDay(state, day) {
-  const interviewersList = [];
 
+export function getInterviewersForDay(state, day) {
   const filteredDays = state.days.filter(weekday => weekday.name === day);
+  const interviewersList = [];
   
   if (filteredDays.length === 0) {
     return interviewersList;

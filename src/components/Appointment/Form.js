@@ -3,6 +3,7 @@ import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
 
 const Form = (props) => {
+  const { onSave, onCancel, interviewers } = props;
 
   const [student, setStudent] = useState(props.student || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -10,7 +11,7 @@ const Form = (props) => {
   const reset = () => {
     setInterviewer(null);
     setStudent('');
-    props.onCancel();
+    onCancel();
   };
 
   return (
@@ -28,7 +29,7 @@ const Form = (props) => {
           />
         </form>
         <InterviewerList
-          interviewers={props.interviewers}
+          interviewers={interviewers}
           value={interviewer}
           onChange={(e) => setInterviewer(e)}
         />
@@ -38,7 +39,7 @@ const Form = (props) => {
           <Button onClick={() => reset()} danger >
             Cancel
           </Button>
-          <Button onClick={props.onSave} confirm >
+          <Button onClick={onSave} confirm >
             Save
           </Button>
         </section>

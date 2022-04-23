@@ -3,7 +3,7 @@ import "components/Application.scss";
 import DayList from './DayList';
 import Appointment from './Appointment';
 import axios from 'axios';
-import { getAppointmentsForDay, getInterviewersForDay, getInterview } from './helpers/selectors';
+import { getAppointmentsForDay, /*getInterviewersForDay,*/ getInterview } from './helpers/selectors';
 
 export default function Application() {
 
@@ -14,12 +14,12 @@ export default function Application() {
     interviewers: {}
   });
 
-  const [appointments, setAppointments] = useState({})
+  // const [appointments, setAppointments] = useState({})
 
   const setDay = day => setState({ ...state, day });
-  const setDays = days => setState(prev => ({ ...prev, days }));
+  // const setDays = days => setState(prev => ({ ...prev, days }));
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const dailyInterviewers = getInterviewersForDay(state, state.interviewers);
+  // const dailyInterviewers = getInterviewersForDay(state, state.interviewers);
 
   useEffect(() => {
     Promise.all([
