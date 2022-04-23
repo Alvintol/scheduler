@@ -10,7 +10,7 @@ const Form = (props) => {
   const reset = () => {
     setInterviewer(null);
     setStudent('');
-    return props.onCancel;
+    props.onCancel();
   };
 
   return (
