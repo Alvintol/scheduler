@@ -10,7 +10,7 @@ import Form from './Form';
 const Appointment = (props) => {
 
   // Destructured properties
-  const { time, interview, student, interviewer } = props;
+  const { time, interview, student, interviewers } = props;
 
   // Variables that designate the view of the appointment slot
   const SHOW = 'SHOW';
@@ -23,8 +23,6 @@ const Appointment = (props) => {
       SHOW :
       EMPTY
   );
-
-  const interviewers = [];
 
   return (
     <article className="appointment">
@@ -44,7 +42,6 @@ const Appointment = (props) => {
       {mode === CREATE &&
         <Form
           student={student}
-          interviewer={interviewer}
           interviewers={interviewers}
           onSave={e => {
             console.log('SAVE BUTTON');

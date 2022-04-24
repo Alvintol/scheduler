@@ -3,7 +3,7 @@ import "components/Application.scss";
 import DayList from './DayList';
 import Appointment from './Appointment';
 import axios from 'axios';
-import { getAppointmentsForDay, /*getInterviewersForDay,*/ getInterview } from './helpers/selectors';
+import { getAppointmentsForDay, getInterviewersForDay, getInterview } from './helpers/selectors';
 
 // Main front end HTML Build
 export default function Application() {
@@ -17,14 +17,14 @@ export default function Application() {
   });
 
   // const [appointments, setAppointments] = useState({})
-  
+
   // Functions for changing existing weekday data
   const setDay = day => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }));
 
   // Function that isolates a list of appointments/interviewers for target weekday
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  // const dailyInterviewers = getInterviewersForDay(state, state.interviewers);
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   // API data request
   useEffect(() => {
@@ -48,17 +48,18 @@ export default function Application() {
   }, []);
 
   const eachAppointment = dailyAppointments.map(appointment => {
-    
+
     // Destructured properties
     const { id, time } = appointment;
     const interview = getInterview(state, appointment.interview);
-    
+
     return (
       <Appointment
         key={id}
         id={id}
         time={time}
         interview={interview}
+        interviewers={dailyInterviewers}
       />
     );
   });
