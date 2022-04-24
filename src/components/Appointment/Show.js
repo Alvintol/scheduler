@@ -1,7 +1,11 @@
 import React from 'react';
 
+// View for existing appointment
 const Show = (props) => {
+
+  // Destructured properties
   const { student, interviewer, onEdit, onDelete } = props;
+  
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

@@ -6,13 +6,18 @@ import Empty from './Empty';
 import useVisualMode from 'hooks/useVisualMode';
 import Form from './Form';
 
+// View of each appointment slot body
 const Appointment = (props) => {
+
+  // Destructured properties
   const { time, interview, student, interviewer } = props;
 
+  // Variables that designate the view of the appointment slot
   const SHOW = 'SHOW';
   const CREATE = 'CREATE';
   const EMPTY = 'EMPTY';
 
+  // Destructured properties of imported visual hooks
   const { mode, transition, back } = useVisualMode(
     props.interview ?
       SHOW :

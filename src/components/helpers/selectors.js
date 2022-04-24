@@ -1,17 +1,20 @@
 export function getAppointmentsForDay(state, day) {
   const appointmentList = [];
 
-  // picks out the weekday object that matches the target day 
+  // Picks out the weekday object that matches the target day 
   const filteredDays = state.days.filter(weekday => weekday.name === day);
   
+  // Returns empty array if weekday provided does not exist
   if (filteredDays.length === 0) {
     return appointmentList;
   }
 
+  // Groups all  
   filteredDays[0].appointments
     .forEach(num =>
       appointmentList.push(state.appointments[num])
     )
+
   return appointmentList;
 };
 

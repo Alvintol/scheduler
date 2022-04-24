@@ -1,7 +1,11 @@
 import React from 'react';
 
+// View for pending status 
 const Status = (props) => {
+  
+  // Destructured properties
   const { message } = props;
+
   return (
     <main className="appointment__card appointment__card--status">
       <img

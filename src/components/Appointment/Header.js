@@ -1,6 +1,9 @@
 import React from 'react';
 
+// View for timeslot header
 const Header = (props) => {
+  
+  // Destructured properties
   const { time } = props;
 
   return (

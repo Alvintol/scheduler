@@ -18,6 +18,7 @@ export default function Application() {
 
   const setDay = day => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }));
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   // const dailyInterviewers = getInterviewersForDay(state, state.interviewers);
 
@@ -42,8 +43,10 @@ export default function Application() {
   }, []);
 
   const eachAppointment = dailyAppointments.map(appointment => {
+    // Destructured properties
     const { id, time } = appointment;
     const interview = getInterview(state, appointment.interview);
+    
     return (
       <Appointment
         key={id}

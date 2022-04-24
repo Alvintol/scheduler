@@ -1,6 +1,9 @@
 import React from 'react';
 
+// View for if there is an error 
 const Error = (props) => {
+  
+  // Destructured properties
   const { message, onClose } = props;
 
   return (

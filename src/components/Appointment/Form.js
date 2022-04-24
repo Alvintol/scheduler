@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import InterviewerList from 'components/InterviewerList';
 import Button from 'components/Button';
 
+// View for new appointment form
 const Form = (props) => {
+  
+  // Destructured properties
   const { onSave, onCancel, interviewers } = props;
 
+  // Default states and change functions for student/interviewer 
   const [student, setStudent] = useState(props.student || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
+  // Resets selected and imput values
   const reset = () => {
     setInterviewer(null);
     setStudent('');

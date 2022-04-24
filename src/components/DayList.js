@@ -1,9 +1,11 @@
 import React from 'react';
 import DayListItem from './DayListItem';
 
+// View of each weekday in nav/sidebar
 export default function DayList(props) {
   const { days, value, onChange } = props;
 
+  // Isolates each weekday 
   const eachDay = days.map(day => {
     const { id, name, spots } = day;
 

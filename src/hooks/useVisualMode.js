@@ -1,9 +1,12 @@
 import { useState } from 'react'
 
+// Functions that controls the flow of appointment view
 export default function useVisualMode(initial) {
 
+  // Destructured properties
   const [history, setHistory] = useState([initial]);
 
+  // Function that changes views
   const transition = (mode, replace = false) => {
     if (!replace) {
       setHistory([...history, mode]);
@@ -14,6 +17,7 @@ export default function useVisualMode(initial) {
     };
   };
 
+  // Function that allows return of the previous view
   const back = () => {
     if (history.length > 1) {
       setHistory(prev => {

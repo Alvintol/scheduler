@@ -1,6 +1,9 @@
 import React from 'react';
 
+// View for an empty time slot
 const Empty = (props) => {
+  
+  // Destructured properties
   const { onAdd } = props;
 
   return (
