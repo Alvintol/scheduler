@@ -2,7 +2,7 @@ import React from 'react';
 
 // View for existing appointment
 const Show = (props) => {
-
+  console.log('PROPS:', props)
   // Destructured properties
   const { student, interviewer, onEdit, onDelete } = props;
   

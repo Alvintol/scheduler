@@ -12,6 +12,7 @@
     }
 
     &--selected {
+      transition: all .2s ease-in;
       color: $dark-background;
       background-color: $white;
       border-radius: 16px;
@@ -24,6 +25,7 @@
     }
 
     &--selected &-image {
+      transition: all .2s ease-in;
       width: 28px;
       height: 28px;
       margin-right: 0.5rem;
@@ -31,6 +33,7 @@
 
     &--selected,
     &:hover {
+      transition: all .2s ease-in;
       @include button-active--opacity;
     }
   }

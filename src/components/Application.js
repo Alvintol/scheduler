@@ -5,8 +5,10 @@ import Appointment from './Appointment';
 import axios from 'axios';
 import { getAppointmentsForDay, /*getInterviewersForDay,*/ getInterview } from './helpers/selectors';
 
+// Main front end HTML Build
 export default function Application() {
 
+  // Default states and change functions for respective data 
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -15,13 +17,16 @@ export default function Application() {
   });
 
   // const [appointments, setAppointments] = useState({})
-
+  
+  // Functions for changing existing weekday data
   const setDay = day => setState({ ...state, day });
   // const setDays = days => setState(prev => ({ ...prev, days }));
 
+  // Function that isolates a list of appointments/interviewers for target weekday
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   // const dailyInterviewers = getInterviewersForDay(state, state.interviewers);
 
+  // API data request
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -43,6 +48,7 @@ export default function Application() {
   }, []);
 
   const eachAppointment = dailyAppointments.map(appointment => {
+    
     // Destructured properties
     const { id, time } = appointment;
     const interview = getInterview(state, appointment.interview);

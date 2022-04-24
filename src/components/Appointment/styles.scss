@@ -16,6 +16,7 @@ $appointment-height: 11rem;
       @include button-inactive--opacity;
 
       &:hover {
+        transition: all .2s ease-in;
         @include button-active--opacity;
       }
     }
@@ -72,6 +73,7 @@ $appointment-height: 11rem;
       );
 
       &:hover {
+        transition: all .4s ease-in;
         color: darken($white, 5%);
         background-color: rgba($booked-color, $active-opacity);
       }
@@ -116,6 +118,7 @@ $appointment-height: 11rem;
       display: none;
 
       &:hover {
+        transition: all .2s ease-in;
         @include button-active--opacity;
       }
 
@@ -126,6 +129,7 @@ $appointment-height: 11rem;
   }
 
   &__card:hover &__actions-button {
+    transition: all .2s ease-in;
     display: inline;
   }
 
@@ -160,6 +164,7 @@ $appointment-height: 11rem;
 
       align-self: flex-start;
       &:hover {
+        transition: all .2s ease-in;
         @include button-active--opacity;
       }
     }

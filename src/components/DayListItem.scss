@@ -13,21 +13,25 @@
     justify-content: center;
 
     &:hover {
+      transition: all .3s ease-in;
       background-color: #ee5253;
       cursor: pointer;
       color: $dark-background;
     }
 
     &--selected {
+      transition: all .2s ease-in;
       background-color: darken($white, 5%);
       color: $dark-background;
 
       &:hover {
+        transition: all .3s ease-in;
         background-color: darken($white, 5%);
       }
     }
 
     &--full {
+      transition: all .2s ease-in;
       opacity: $inactive-opacity;
     }
   }
