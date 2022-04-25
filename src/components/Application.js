@@ -32,6 +32,7 @@ export default function Application() {
       axios.get('/api/days'),
       axios.get('/api/appointments'),
       axios.get('/api/interviewers')
+      // ,axios.get('/api/debug/reset'),
     ]).then((all) => {
       setState(prev => ({
         ...prev,
@@ -47,6 +48,27 @@ export default function Application() {
       });
   }, []);
 
+  const bookInterview = (id, interview) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({ ...state, appointments })
+    return axios.put(`/api/appointments/${id}`, {
+      interview
+    })
+      .then(() => {
+        setState(...state.appointments, appointments)
+      })
+      .catch((error) => {
+        console.log(error.response)
+      });
+  };
+
   const eachAppointment = dailyAppointments.map(appointment => {
 
     // Destructured properties
@@ -60,6 +82,7 @@ export default function Application() {
         time={time}
         interview={interview}
         interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
       />
     );
   });
@@ -88,6 +111,9 @@ export default function Application() {
       </section>
       <section className="schedule">
         {eachAppointment}
+        <Appointment
+          time='5pm'
+        />
       </section>
     </main>
   );
