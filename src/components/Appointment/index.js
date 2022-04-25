@@ -5,10 +5,11 @@ import Show from './Show';
 import Empty from './Empty';
 import useVisualMode from 'hooks/useVisualMode';
 import Form from './Form';
+import Status from './Status';
 
 // View of each appointment slot body
 const Appointment = (props) => {
-
+  console.log('APPOINTMENT PROPS:', props)
   // Destructured properties
   const { id, time, interview, interviewers, bookInterview } = props;
 
@@ -16,6 +17,7 @@ const Appointment = (props) => {
   const SHOW = 'SHOW';
   const CREATE = 'CREATE';
   const EMPTY = 'EMPTY';
+  const SAVING = 'SAVING';
 
   // Destructured properties of imported visual hooks
   const { mode, transition, back } = useVisualMode(
@@ -30,9 +32,12 @@ const Appointment = (props) => {
       student: name,
       interviewer
     };
-
-    bookInterview(id, interview);
-    transition(SHOW);
+    transition(SAVING)
+    bookInterview(id, interview)
+      .then(() => {
+        transition(SHOW)
+      }
+      );
   };
 
   return (
@@ -56,6 +61,10 @@ const Appointment = (props) => {
           onSave={save}
           onCancel={() => back()}
         />
+      }
+      {mode === SAVING &&
+        <Status
+          message='Loading right Meow' />
       }
     </article>
   );
