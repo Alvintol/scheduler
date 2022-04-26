@@ -7,10 +7,12 @@ import useVisualMode from 'hooks/useVisualMode';
 import Form from './Form';
 import Status from './Status';
 import Confirm from './Confirm';
+import Error from './Error';
+
 
 // View of each appointment slot body
 const Appointment = (props) => {
-  console.log('APPOINTMENT PROPS:', props)
+
   // Destructured properties
   const { id, time, interview, interviewers, bookInterview, deleteInterview } = props;
 
@@ -21,6 +23,9 @@ const Appointment = (props) => {
   const SAVING = 'SAVING';
   const DELETE = 'DELETE';
   const CONFIRM = 'CONFIRM';
+  const EDIT = 'EDIT';
+  const ERROR_SAVE = 'ERROR_SAVE';
+  const ERROR_DELETE = 'ERROR_DELETE';
 
 
   // Destructured properties of imported visual hooks
@@ -31,7 +36,6 @@ const Appointment = (props) => {
   );
 
   const save = (name, interviewer) => {
-
     const interview = {
       student: name,
       interviewer
@@ -39,20 +43,17 @@ const Appointment = (props) => {
 
     transition(SAVING);
     bookInterview(id, interview)
-      .then(() => {
-        transition(SHOW)
-      }
-      );
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true))
   };
 
   const onDelete = () => {
-
     const interview = null;
 
-    transition(DELETE);
+    transition(DELETE, true);
     deleteInterview(id, interview)
-      .then(() =>
-        transition(EMPTY));
+      .then(() => transition(EMPTY))
+      .catch(() => transition(ERROR_DELETE, true))
   };
 
   return (
@@ -62,7 +63,7 @@ const Appointment = (props) => {
         <Show
           student={interview.student}
           interviewer={interview.interviewer}
-          onEdit={() => { console.log('EDIT BUTTON') }}
+          onEdit={() => transition(EDIT)}
           onDelete={() => transition(CONFIRM)}
         />}
       {mode === EMPTY &&
@@ -72,6 +73,15 @@ const Appointment = (props) => {
         />}
       {mode === CREATE &&
         <Form
+          interviewers={interviewers}
+          onSave={save}
+          onCancel={() => back()}
+        />
+      }
+      {mode === EDIT &&
+        <Form
+          student={interview.student}
+          interviewer={interview.interviewer.id}
           interviewers={interviewers}
           onSave={save}
           onCancel={() => back()}
@@ -87,8 +97,20 @@ const Appointment = (props) => {
       }
       {mode === CONFIRM &&
         <Confirm
-        onCancel={() => {back()}}
-        onConfirm={onDelete}
+          onCancel={() => { back() }}
+          onConfirm={onDelete}
+        />
+      }
+      {mode === ERROR_SAVE &&
+        <Error
+          onClose={() => transition(SHOW)}
+          message='Oops error onSave'
+        />
+      }
+      {mode === ERROR_DELETE &&
+        <Error
+          onClose={() => back(SHOW)}
+          message='Oops error delete'
         />
       }
     </article>
