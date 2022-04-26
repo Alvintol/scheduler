@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 export default function useApplicationData() {
 
   // Default states and change functions for respective data 
@@ -48,11 +47,18 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    const dayIndex = state.days.findIndex(day => {
+      return state.day === day.name
+    });
+
+    const days = [...state.days];
+    days[dayIndex].spots--
+
     return axios.put(`/api/appointments/${id}`, {
       interview
     })
       .then(() =>
-        setState({ ...state, appointments }))
+        setState({ ...state, appointments, days }));
   };
 
   const deleteInterview = (id, interview) => {
@@ -67,11 +73,18 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    const dayIndex = state.days.findIndex(day => {
+      return state.day === day.name
+    });
+
+    const days = [...state.days];
+    days[dayIndex].spots++
+
     return axios.delete(`/api/appointments/${id}`, {
       interview
     })
       .then(() =>
-        setState({ ...state, appointments }))
+        setState({ ...state, appointments, days }))
   };
 
   return { state, setDay, bookInterview, deleteInterview }

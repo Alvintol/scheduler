@@ -7,6 +7,7 @@ export default function DayList(props) {
 
   // Isolates each weekday 
   const eachDay = days.map(day => {
+    console.log('DAY:', day)
     const { id, name, spots } = day;
 
     return <DayListItem

@@ -17,8 +17,6 @@ export default function Application() {
 
   // const [appointments, setAppointments] = useState({})
 
-  // const setDays = days => setState(prev => ({ ...prev, days }));
-
   // Function that isolates a list of appointments/interviewers for target weekday
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
