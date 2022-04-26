@@ -6,18 +6,22 @@ import Empty from './Empty';
 import useVisualMode from 'hooks/useVisualMode';
 import Form from './Form';
 import Status from './Status';
+import Confirm from './Confirm';
 
 // View of each appointment slot body
 const Appointment = (props) => {
   console.log('APPOINTMENT PROPS:', props)
   // Destructured properties
-  const { id, time, interview, interviewers, bookInterview } = props;
+  const { id, time, interview, interviewers, bookInterview, deleteInterview } = props;
 
   // Variables that designate the view of the appointment slot
   const SHOW = 'SHOW';
   const CREATE = 'CREATE';
   const EMPTY = 'EMPTY';
   const SAVING = 'SAVING';
+  const DELETE = 'DELETE';
+  const CONFIRM = 'CONFIRM';
+
 
   // Destructured properties of imported visual hooks
   const { mode, transition, back } = useVisualMode(
@@ -32,12 +36,23 @@ const Appointment = (props) => {
       student: name,
       interviewer
     };
-    transition(SAVING)
+
+    transition(SAVING);
     bookInterview(id, interview)
       .then(() => {
         transition(SHOW)
       }
       );
+  };
+
+  const onDelete = () => {
+
+    const interview = null;
+
+    transition(DELETE);
+    deleteInterview(id, interview)
+      .then(() =>
+        transition(EMPTY));
   };
 
   return (
@@ -48,7 +63,7 @@ const Appointment = (props) => {
           student={interview.student}
           interviewer={interview.interviewer}
           onEdit={() => { console.log('EDIT BUTTON') }}
-          onDelete={() => { console.log('DELETE BUTTON') }}
+          onDelete={() => transition(CONFIRM)}
         />}
       {mode === EMPTY &&
         <Empty onAdd={() => {
@@ -64,7 +79,17 @@ const Appointment = (props) => {
       }
       {mode === SAVING &&
         <Status
-          message='Loading right Meow' />
+          message='Loading Right Meow' />
+      }
+      {mode === DELETE &&
+        <Status
+          message='POOF! Wish Granted' />
+      }
+      {mode === CONFIRM &&
+        <Confirm
+        onCancel={() => {back()}}
+        onConfirm={onDelete}
+        />
       }
     </article>
   );
