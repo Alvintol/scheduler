@@ -4,13 +4,28 @@ import Button from 'components/Button';
 
 // View for new appointment form
 const Form = (props) => {
-  
+
   // Destructured properties
   const { onSave, onCancel, interviewers } = props;
 
   // Default states and change functions for student/interviewer 
+  const [error, setError] = useState("");
   const [student, setStudent] = useState(props.student || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+
+  const validate = () => {
+    if (!student) {
+      setError("Student name cannot be blank");
+      return;
+    }
+
+    if (!interviewer) {
+      setError("Please select an interviewer");
+      return;
+    }
+    onSave(student, interviewer);
+  };
+
 
   // Resets selected and imput values
   const reset = () => {
@@ -18,6 +33,8 @@ const Form = (props) => {
     setStudent('');
     onCancel();
   };
+
+  
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -29,10 +46,12 @@ const Form = (props) => {
             type="text"
             placeholder="Enter Student Name"
             value={student}
-            onChange={e => setStudent(e.target.value)}
-            onSubmit={e => e.preventDefault()}
+            onChange={e => {setStudent(e.target.value)}}
+            onSubmit={e => {e.preventDefault()}}
+            data-testid="student-name-input"
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList
           interviewers={interviewers}
           value={interviewer}
@@ -44,7 +63,7 @@ const Form = (props) => {
           <Button onClick={() => reset()} danger >
             Cancel
           </Button>
-          <Button onClick={() => onSave(student, interviewer)} confirm >
+          <Button onClick={() => validate()} confirm >
             Save
           </Button>
         </section>
