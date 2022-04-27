@@ -22,18 +22,18 @@ const Form = (props) => {
 
 
   const validate = () => {
-    if (!student) {
-      setError("Student name cannot be blank");
-      return;
+    if (student === '') {
+      return setError("Surely you at least a first name");
     }
 
     if (!interviewer) {
-      setError("Please select an interviewer");
-      return;
+      return setError("Please select an interviewer");
     }
+
+    setError("");
     onSave(student, interviewer);
   };
- 
+
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -45,8 +45,8 @@ const Form = (props) => {
             type="text"
             placeholder="Enter Student Name"
             value={student}
-            onChange={e => {setStudent(e.target.value)}}
-            onSubmit={e => {e.preventDefault()}}
+            onChange={e => { setStudent(e.target.value) }}
+            onSubmit={e => { e.preventDefault() }}
             data-testid="student-name-input"
           />
         </form>

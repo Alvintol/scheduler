@@ -37,18 +37,19 @@ export default function useApplicationData() {
 
 
   const updateSpots = (state, appointments) => {
-    
-    const weekday = state.days.find(weekday => weekday.name === state.day);
     let spots = 0;
 
-    for (const id of weekday.appointments) {
+    const weekday = state.days.find(weekday =>
+      weekday.name === state.day);
+
+    weekday.appointments.forEach(id => {
       const appointment = appointments[id];
       if (!appointment.interview)
         spots++
-    }
+    })
 
     const day = { ...weekday, spots };
-    const days = state.days.map(weekday => 
+    const days = state.days.map(weekday =>
       weekday.name === state.day ? day : weekday)
     return days;
   }
@@ -76,7 +77,7 @@ export default function useApplicationData() {
 
 
   const deleteInterview = (id, interview) => {
-    
+
     const appointment = {
       ...state.appointments[id],
       interview: null
