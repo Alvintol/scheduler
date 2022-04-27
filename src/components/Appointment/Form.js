@@ -13,6 +13,14 @@ const Form = (props) => {
   const [student, setStudent] = useState(props.student || '');
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
+  // Resets selected and imput values
+  const reset = () => {
+    setInterviewer(null);
+    setStudent('');
+    onCancel();
+  };
+
+
   const validate = () => {
     if (!student) {
       setError("Student name cannot be blank");
@@ -25,16 +33,7 @@ const Form = (props) => {
     }
     onSave(student, interviewer);
   };
-
-
-  // Resets selected and imput values
-  const reset = () => {
-    setInterviewer(null);
-    setStudent('');
-    onCancel();
-  };
-
-  
+ 
 
   return (
     <main className="appointment__card appointment__card--create">

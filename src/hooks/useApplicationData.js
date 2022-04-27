@@ -35,6 +35,24 @@ export default function useApplicationData() {
       });
   }, []);
 
+
+  const updateSpots = (state, appointments) => {
+    
+    const weekday = state.days.find(weekday => weekday.name === state.day);
+    let spots = 0;
+
+    for (const id of weekday.appointments) {
+      const appointment = appointments[id];
+      if (!appointment.interview)
+        spots++
+    }
+
+    const day = { ...weekday, spots };
+    const days = state.days.map(weekday => 
+      weekday.name === state.day ? day : weekday)
+    return days;
+  }
+
   const bookInterview = (id, interview) => {
 
     const appointment = {
@@ -47,25 +65,21 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    const dayIndex = state.days.findIndex(day => {
-      return state.day === day.name
-    });
-
-    const days = [...state.days];
-    days[dayIndex].spots--
-
     return axios.put(`/api/appointments/${id}`, {
       interview
     })
-      .then(() =>
-        setState({ ...state, appointments, days }));
+      .then(() => {
+        const days = updateSpots(state, appointments);
+        setState({ ...state, days, appointments })
+      });
   };
 
-  const deleteInterview = (id, interview) => {
 
+  const deleteInterview = (id, interview) => {
+    
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview }
+      interview: null
     };
 
     const appointments = {
@@ -73,18 +87,13 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    const dayIndex = state.days.findIndex(day => {
-      return state.day === day.name
-    });
-
-    const days = [...state.days];
-    days[dayIndex].spots++
-
     return axios.delete(`/api/appointments/${id}`, {
       interview
     })
-      .then(() =>
-        setState({ ...state, appointments, days }))
+      .then(() => {
+        const days = updateSpots(state, appointments);
+        setState({ ...state, days, appointments })
+      })
   };
 
   return { state, setDay, bookInterview, deleteInterview }
