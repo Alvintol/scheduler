@@ -93,6 +93,10 @@ $appointment-height: 11rem;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      background-color: $white;
+      background-repeat: no-repeat;
+      background-size: 90px; 
+      background-image: url('https://th.bing.com/th/id/OIP.BzbZ3evoe7Ya0cV093sxTwHaKe?pid=ImgDet&rs=1');
     }
 
     &--error {

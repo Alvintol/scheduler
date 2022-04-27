@@ -3,7 +3,7 @@ import Button from 'components/Button';
 
 // View of appointment deletion 
 const Confirm = (props) => {
-  
+
   // Destructured properties
   const { onCancel, onConfirm } = props;
 

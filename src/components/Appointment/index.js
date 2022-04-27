@@ -93,7 +93,8 @@ const Appointment = (props) => {
       }
       {mode === DELETE &&
         <Status
-          message='POOF! Wish Granted' />
+          message='POOF! Wish Granted'
+          poof='poof' />
       }
       {mode === CONFIRM &&
         <Confirm

@@ -62,7 +62,7 @@ const Form = (props) => {
           <Button onClick={() => reset()} danger >
             Cancel
           </Button>
-          <Button onClick={() => validate()} confirm >
+          <Button onClick={validate} confirm >
             Save
           </Button>
         </section>
