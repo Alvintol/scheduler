@@ -12,8 +12,7 @@ const InterviewerListItem = (props) => {
     'interviewers__item--selected': selected
   });
 
-  return (
-    <li
+  return <li
       className={interviewerClass}
       onClick={setInterviewer}>
       <img
@@ -23,7 +22,6 @@ const InterviewerListItem = (props) => {
       />
       {selected && name}
     </li>
-  );
 };
 
 export default InterviewerListItem;

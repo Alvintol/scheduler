@@ -23,15 +23,13 @@ const InterviewerList = (props) => {
   }
   );
 
-  return (
-    <section className='interviewers'>
+  return <section className='interviewers'>
       <h4 className='interviewers__header text--light'>
       </h4>
       <ul className='interviewers__list'>
         {eachPerson}
       </ul>
     </section>
-  );
 };
 
 InterviewerList.propTypes = {

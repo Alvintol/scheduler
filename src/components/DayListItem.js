@@ -20,11 +20,10 @@ export default function DayListItem(props) {
       case 0: return 'no spots remaining';
       case 1: return '1 spot remaining';
       default: return `${numSpots} spots remaining`;
-    }
-  }
+    };
+  };
 
-  return (
-    <li data-testid={'day'} className={dayClass} onClick={() => {
+  return <li data-testid={'day'} className={dayClass} onClick={() => {
       setDay(name)
     }}>
       <h2 className='text--regular'>
@@ -34,5 +33,4 @@ export default function DayListItem(props) {
         {formatSpots(spots)}
       </h3>
     </li>
-  );
-}
+};
