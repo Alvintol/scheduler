@@ -6,8 +6,7 @@ const Error = (props) => {
   // Destructured properties
   const { message, onClose } = props;
 
-  return (
-    <main className='appointment__card appointment__card--error'>
+  return <main className='appointment__card appointment__card--error'>
       <section className='appointment__error-message'>
         <h1 className='text--semi-bold'>
           SYKE
@@ -23,7 +22,6 @@ const Error = (props) => {
         onClick={onClose}
       />
     </main>
-  );
 };
 
 export default Error;

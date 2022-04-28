@@ -64,8 +64,7 @@ const Appointment = (props) => {
       .catch(() => transition(ERROR_DELETE, true));
   };
 
-  return (
-    <article className='appointment'>
+  return <article className='appointment'>
       <Header
         time={time}
       />
@@ -123,7 +122,6 @@ const Appointment = (props) => {
         />
       }
     </article>
-  );
 };
 
 export default Appointment;

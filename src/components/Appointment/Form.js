@@ -34,8 +34,7 @@ const Form = (props) => {
   };
 
 
-  return (
-    <main className='appointment__card appointment__card--create'>
+  return <main className='appointment__card appointment__card--create'>
       <section className='appointment__card-left'>
         <form autoComplete='off'>
           <input
@@ -73,7 +72,6 @@ const Form = (props) => {
         </section>
       </section>
     </main>
-  );
 };
 
 export default Form;

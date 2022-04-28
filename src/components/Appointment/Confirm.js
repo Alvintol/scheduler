@@ -7,8 +7,7 @@ const Confirm = (props) => {
   // Destructured properties
   const { onCancel, onConfirm } = props;
 
-  return (
-    <main className='appointment__card appointment__card--confirm'>
+  return <main className='appointment__card appointment__card--confirm'>
       <h1 className='text--semi-bold'>
         Do you actually wish to delete this appointment?
       </h1>
@@ -25,7 +24,6 @@ const Confirm = (props) => {
         </Button>
       </section>
     </main>
-  );
 };
 
 export default Confirm;
