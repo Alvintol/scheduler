@@ -112,7 +112,7 @@ const Appointment = (props) => {
       }
       {mode === ERROR_SAVE &&
         <Error
-          onClose={() => transition(SHOW)}
+          onClose={() => back(CREATE)}
           message='Gotcha. There was an error'
         />
       }
