@@ -2,10 +2,10 @@
 
 Interview Scheduler is a mock application that allows users to book and cancel interviews.
 
-!["Screenshot of Vertical/Narrow View"](URL)
-!["Screenshot appointment removal"](URL)
-!["Screenshot appointment create fields"](URL)
-!["Screenshot of error message"](URL)
+!["Screenshot of Vertical/Narrow View"](https://github.com/Alvintol/scheduler/blob/master/public/images/VerticalView.png?raw=true)
+!["Screenshot appointment create fields"](https://github.com/Alvintol/scheduler/blob/master/public/images/Create.png?raw=true)
+!["Screenshot of error message"](https://github.com/Alvintol/scheduler/blob/master/public/images/Error.png?raw=true)
+!["Screenshot appointment removal confirmation"](https://github.com/Alvintol/scheduler/blob/master/public/images/Confirm.png?raw=true)
 
 
 ## Setup
