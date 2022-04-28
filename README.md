@@ -11,6 +11,7 @@ Interview Scheduler is a mock application that allows users to book and cancel i
 ## Setup
 
 - Install dependencies with `npm install`
+- Clone Scheduler-api for database from `https://github.com/lighthouse-labs/scheduler-api`
 - Login and Create Postgres database with `psql -U development`
 - Build and seed database tables
 
