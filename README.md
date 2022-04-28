@@ -2,15 +2,17 @@
 
 Interview Scheduler is a mock application that allows users to book and cancel interviews.
 
-!["Screenshot of Vertical/Narrow View"]
-!["Screenshot appointment removal"]
-!["Screenshot appointment create fields"]
-!["Screenshot of error message"]
+!["Screenshot of Vertical/Narrow View"](URL)
+!["Screenshot appointment removal"](URL)
+!["Screenshot appointment create fields"](URL)
+!["Screenshot of error message"](URL)
 
 
 ## Setup
 
-Install dependencies with `npm install`.
+- Install dependencies with `npm install`
+- Login and Create Postgres database with `psql -U development`
+- Build and seed database tables
 
 ## Running Webpack Development Server
 
