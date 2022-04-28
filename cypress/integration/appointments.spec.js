@@ -12,7 +12,7 @@ describe('Appointments', () => {
       .click();
 
     cy.get("[data-testid=student-name-input]")
-      .type("Capitan UnderPants");
+      .type("Capitan UnderPants", { delay: 150 });
 
     cy.get('[alt="Sylvia Palmer"]')
       .click();
@@ -29,7 +29,9 @@ describe('Appointments', () => {
       .first()
       .click({ force: true });
 
-    cy.get("[data-testid=student-name-input]").clear().type("Sir Meowzer");
+    cy.get("[data-testid=student-name-input]")
+      .clear()
+      .type("Sir Meowzer", { delay: 150 });
     cy.get("[alt='Tori Malcolm']").click();
 
     cy.contains("Save").click();
