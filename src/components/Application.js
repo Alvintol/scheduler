@@ -40,8 +40,7 @@ export default function Application() {
     />
   });
 
-  return
-  <main className='layout'>
+  return <main className='layout'>
     <section className='sidebar'>
       <img
         className='sidebar--centered'
