@@ -55,3 +55,4 @@ npm run storybook
 ## Stretch Completed
 
 - Added database to Heroku server
+- Connected Github to CircleCi
