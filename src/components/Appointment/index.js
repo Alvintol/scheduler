@@ -14,16 +14,22 @@ import Error from './Error';
 const Appointment = (props) => {
 
   // Destructured properties
-  const { id, time, interview, interviewers, bookInterview, deleteInterview } = props;
+  const {
+    id,
+    time,
+    interview,
+    interviewers,
+    bookInterview,
+    deleteInterview } = props;
 
   // Variables that designate the view of the appointment slot
-  const SHOW = 'SHOW';
-  const CREATE = 'CREATE';
-  const EMPTY = 'EMPTY';
-  const SAVING = 'SAVING';
-  const DELETE = 'DELETE';
-  const CONFIRM = 'CONFIRM';
   const EDIT = 'EDIT';
+  const SHOW = 'SHOW';
+  const EMPTY = 'EMPTY';
+  const CREATE = 'CREATE';
+  const DELETE = 'DELETE';
+  const SAVING = 'SAVING';
+  const CONFIRM = 'CONFIRM';
   const ERROR_SAVE = 'ERROR_SAVE';
   const ERROR_DELETE = 'ERROR_DELETE';
 
@@ -35,6 +41,7 @@ const Appointment = (props) => {
       EMPTY
   );
 
+  // Saving a new interview animation, update & error handler
   const save = (name, interviewer) => {
     const interview = {
       student: name,
@@ -44,21 +51,24 @@ const Appointment = (props) => {
     transition(SAVING);
     bookInterview(id, interview)
       .then(() => transition(SHOW))
-      .catch(() => transition(ERROR_SAVE, true))
+      .catch(() => transition(ERROR_SAVE, true));
   };
 
+  // Deleting an interview animation, update & error handler
   const onDelete = () => {
     const interview = null;
 
     transition(DELETE, true);
     deleteInterview(id, interview)
       .then(() => transition(EMPTY))
-      .catch(() => transition(ERROR_DELETE, true))
+      .catch(() => transition(ERROR_DELETE, true));
   };
 
   return (
-    <article className="appointment">
-      <Header time={time} />
+    <article className='appointment'>
+      <Header
+        time={time}
+      />
       {mode === SHOW &&
         <Show
           student={interview.student}
@@ -67,9 +77,7 @@ const Appointment = (props) => {
           onDelete={() => transition(CONFIRM)}
         />}
       {mode === EMPTY &&
-        <Empty onAdd={() => {
-          transition(CREATE)
-        }}
+        <Empty onAdd={() => transition(CREATE)}
         />}
       {mode === CREATE &&
         <Form
@@ -94,24 +102,24 @@ const Appointment = (props) => {
       {mode === DELETE &&
         <Status
           message='POOF! Wish Granted'
-          poof='poof' />
+        />
       }
       {mode === CONFIRM &&
         <Confirm
-          onCancel={() => { back() }}
+          onCancel={() => back()}
           onConfirm={onDelete}
         />
       }
       {mode === ERROR_SAVE &&
         <Error
           onClose={() => transition(SHOW)}
-          message='Oops error onSave'
+          message='Gotcha. There was an error'
         />
       }
       {mode === ERROR_DELETE &&
         <Error
           onClose={() => back(SHOW)}
-          message='Oops error delete'
+          message='We swear this never happens...'
         />
       }
     </article>

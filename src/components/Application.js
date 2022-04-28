@@ -1,5 +1,5 @@
-import React from "react";
-import "components/Application.scss";
+import React from 'react';
+import 'components/Application.scss';
 import DayList from './DayList';
 import Appointment from './Appointment';
 import { getAppointmentsForDay, getInterviewersForDay, getInterview } from './helpers/selectors';
@@ -8,6 +8,7 @@ import useApplicationData from 'hooks/useApplicationData';
 // Main front end HTML Build
 export default function Application() {
 
+  // Destructured properties
   const {
     state,
     setDay,
@@ -15,17 +16,17 @@ export default function Application() {
     deleteInterview
   } = useApplicationData();
 
-  // const [appointments, setAppointments] = useState({})
-
-  // Function that isolates a list of appointments/interviewers for target weekday
+  // Isolates a list of appointments/interviewers for target weekday
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
-
+  // Builds each existing appointment
   const eachAppointment = dailyAppointments.map(appointment => {
 
     // Destructured properties
     const { id, time } = appointment;
+
+    // Isolates a single target interview object 
     const interview = getInterview(state, appointment.interview);
 
     return (
@@ -42,15 +43,15 @@ export default function Application() {
   });
 
   return (
-    <main className="layout">
-      <section className="sidebar">
+    <main className='layout'>
+      <section className='sidebar'>
         <img
-          className="sidebar--centered"
-          src="images/logo.png"
-          alt="Interview Scheduler"
+          className='sidebar--centered'
+          src='images/logo.png'
+          alt='Interview Scheduler'
         />
-        <hr className="sidebar__separator sidebar--centered" />
-        <nav className="sidebar__menu">
+        <hr className='sidebar__separator sidebar--centered' />
+        <nav className='sidebar__menu'>
           <DayList
             days={state.days}
             value={state.day}
@@ -58,12 +59,12 @@ export default function Application() {
           />
         </nav>
         <img
-          className="sidebar__lhl sidebar--centered"
-          src="images/lhl.png"
-          alt="Lighthouse Labs"
+          className='sidebar__lhl sidebar--centered'
+          src='images/lhl.png'
+          alt='Lighthouse Labs'
         />
       </section>
-      <section className="schedule">
+      <section className='schedule'>
         {eachAppointment}
         <Appointment
           key='last'

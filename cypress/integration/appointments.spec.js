@@ -4,8 +4,7 @@ describe('Appointments', () => {
     cy.request("GET", "/api/debug/reset");
     cy.visit("/");
     cy.contains('[data-testid=day]', "Monday");
-
-  })
+  });
 
   it("should book an interview", () => {
     cy.get('[alt=Add]')

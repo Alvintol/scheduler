@@ -3,6 +3,8 @@ import DayListItem from './DayListItem';
 
 // View of each weekday in nav/sidebar
 export default function DayList(props) {
+
+  // Destructured properties
   const { days, value, onChange } = props;
 
   // Isolates each weekday 

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import classNames from 'classnames';
 import 'components/DayListItem.scss'
 
@@ -9,7 +9,7 @@ export default function DayListItem(props) {
   const { selected, spots, name, setDay } = props;
 
   // Conditional classes based on selected/full state of the weekday
-  let dayClass = classNames('day-list__item', {
+  const dayClass = classNames('day-list__item', {
     'day-list__item--selected': selected,
     'day-list__item--full': spots === 0
   });
@@ -27,10 +27,10 @@ export default function DayListItem(props) {
     <li data-testid={'day'} className={dayClass} onClick={() => {
       setDay(name)
     }}>
-      <h2 className="text--regular">
+      <h2 className='text--regular'>
         {name}
       </h2>
-      <h3 className="text--light">
+      <h3 className='text--light'>
         {formatSpots(spots)}
       </h3>
     </li>

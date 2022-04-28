@@ -17,7 +17,7 @@ const InterviewerListItem = (props) => {
       className={interviewerClass}
       onClick={setInterviewer}>
       <img
-        className="interviewers__item-image"
+        className='interviewers__item-image'
         src={avatar}
         alt={name}
       />
